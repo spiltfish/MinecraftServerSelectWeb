@@ -10,7 +10,7 @@ class ServerSelectView(TemplateView):
         context = super(ServerSelectView, self).get_context_data()
         return context
 
-def AddServer(request):
+class AddServer(TemplateView):
     template_name = 'server-add.html'
 
     def post(self, request, *args, **kwargs):
