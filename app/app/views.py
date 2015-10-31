@@ -10,6 +10,7 @@ class ServerSelectView(TemplateView):
         context = super(ServerSelectView, self).get_context_data()
         return context
 
+
 class AddServer(TemplateView):
     template_name = 'server-add.html'
 

@@ -19,6 +19,6 @@ from app.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', ServerSelectView.as_view(), name='templates/servers-select'),
+    url(r'^$', ServerSelectView.as_view(), name='servers-select'),
     url(r'^servers/', AddServer.as_view(), name='add-sever'),
 ]
