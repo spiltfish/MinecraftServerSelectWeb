@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from mcselect.models.server import Server
+from mcselect.models import Server
 
 class AddServerForm(ModelForm):
     '''This Form Creates a New Server, and should then set up the server for the first time'''
