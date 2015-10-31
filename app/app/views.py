@@ -14,10 +14,8 @@ class AddServer(TemplateView):
     template_name = 'server-add.html'
 
     def post(self, request, *args, **kwargs):
-        if 'add_server' in request.POST:
-            with transaction.atomic():
-                server = Server.objects()
-
-                server.save()
+        with transaction.atomic():
+            server = Server.create("test", "server_type", "server_version")
+            server.save()
 
         return HttpResponseRedirect("/server-select.html")
