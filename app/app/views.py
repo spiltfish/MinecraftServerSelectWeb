@@ -16,7 +16,7 @@ def AddServer(request):
     def post(self, request, *args, **kwargs):
         if 'add_server' in request.POST:
             with transaction.atomic():
-                server = Server.objects.
+                server = Server.objects()
 
                 server.save()
 
