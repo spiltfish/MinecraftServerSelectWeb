@@ -1,6 +1,8 @@
-from django import forms
+from django.forms import ModelForm
+from app.models.server import Server
 
-class AddServerForm(forms.Form):
+class AddServerForm(ModelForm):
     '''This Form Creates a New Server, and should then set up the server for the first time'''
-    server_name = forms.CharField(label='Server Name', max_length=50)
-    #mod_pack = SelectField() # This should be a select field of all modpacks in the modpacks DB
+    class Meta:
+        model = Server
+        fields = ['server_name', "server_type", "server_version"]
