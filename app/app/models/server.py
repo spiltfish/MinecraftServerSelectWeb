@@ -1,14 +1,14 @@
 from django.db import models
 
 class Server(models.Model):
-    sever_name = models.CharField(max_length=128)
+    server_name = models.CharField(max_length=128)
     is_enabled = models.BooleanField()
     server_type = models.CharField(max_length=128)
     server_version = models.CharField(max_length=128)
 
     @classmethod
-    def create(self, server_name, server_type, server_version):
-        server = self(server_name=server_name, is_enabled=False, server_type=server_type, server_version=server_version)
+    def create(cls, server_name, server_type, server_version):
+        server = cls(server_name=server_name, is_enabled=False, server_type=server_type, server_version=server_version)
         return server
 
     def __unicode__(self):
