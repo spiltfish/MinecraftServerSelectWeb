@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from django.db import transaction
 from django.http import HttpResponseRedirect
-from app.models.server import Server
+from mcselect.models.server import Server
 
 class ServerSelectView(TemplateView):
     template_name = 'servers-select.html'

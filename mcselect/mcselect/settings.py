@@ -37,7 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',
+    'mcselect',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,12 +51,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'app.urls'
+ROOT_URLCONF = 'mcselect.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["/root/git/MinecraftServerSelectWeb/MinecraftServerSelectWeb/app/app/templates"],
+        'DIRS': ["/root/git/MinecraftServerSelectWeb/MinecraftServerSelectWeb/mcselect/mcselect/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,7 +69,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'app.wsgi.application'
+WSGI_APPLICATION = 'mcselect.wsgi.application'
 
 
 # Database
