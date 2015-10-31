@@ -3,7 +3,7 @@
         <h1>Add A Server</h1>
 
         <form action="servers/" method="post" class="form-horizontal">
-            {{ AddServerForm }}
+            {% csrf_token %}
             <input type="text" name="Server Name" id="12"/>
             <input type="submit" value="Add" />
         </form>
