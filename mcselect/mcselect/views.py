@@ -7,7 +7,8 @@ class ServerSelectView(TemplateView):
     template_name = 'servers-select.html'
 
     def get_context_data(self, **kwargs):
-        context = super(ServerSelectView, self).get_context_data()
+        context = super(ServerSelectView, self).get_context_data(**kwargs)
+        context["all_servers"] = Server.objects.all()
         return context
 
 
