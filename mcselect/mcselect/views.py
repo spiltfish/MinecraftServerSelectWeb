@@ -20,4 +20,4 @@ class AddServer(TemplateView):
             server = Server.create("test", "server_type", "server_version")
             server.save()
 
-        return HttpResponseRedirect("/servers-select")
+        return HttpResponseRedirect("/servers")
