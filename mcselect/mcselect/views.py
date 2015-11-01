@@ -18,7 +18,7 @@ class AddServer(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(AddServer, self).get_context_data(**kwargs)
-        context["new_server"] = Server.create()
+        #context["new_server"] = Server.create()
 
     def post(self, request, *args, **kwargs):
         with transaction.atomic():
