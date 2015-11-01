@@ -6,7 +6,7 @@ class Server(models.Model):
     is_enabled = models.BooleanField()
     server_type = models.CharField(max_length=128)
     server_version = models.CharField(max_length=128)
-    is_deployed = models.BooleanField()
+    is_deployed = models.BooleanField(default=False)
 
     @classmethod
     def create(cls, server_name, server_type, server_version):
