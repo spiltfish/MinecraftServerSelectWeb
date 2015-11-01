@@ -8,6 +8,7 @@ class Server(models.Model):
 
     @classmethod
     def create(cls, server_name, server_type, server_version):
+        print("server.create")
         server = cls(server_name=server_name, is_enabled=False, server_type=server_type, server_version=server_version)
         return server
 
