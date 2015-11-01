@@ -2,7 +2,7 @@ from django.db import models
 import uuid
 
 class Server(models.Model):
-    server_name = models.CharField(max_length=128, unique=True, default=uuid.uuid1())
+    server_name = models.CharField(max_length=128, unique=True, default=uuid.uuid1)
     is_enabled = models.BooleanField()
     server_type = models.CharField(max_length=128)
     server_version = models.CharField(max_length=128)
