@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from django.db import transaction
 from django.http import HttpResponseRedirect
 from mcselect.models import Server
-from server_actions.set_up_new_server import set_up_new_ftb_server
+from mcselect.server_actions.set_up_new_server import set_up_new_ftb_server
 
 class ServerSelectView(TemplateView):
     template_name = 'servers-select.html'
