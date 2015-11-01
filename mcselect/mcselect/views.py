@@ -17,6 +17,9 @@ class AddServer(TemplateView):
     def post(self, request, *args, **kwargs):
         with transaction.atomic():
             print("Creating new server.")
+            print(request)
+            print(*args)
+            print(**kwargs)
             server = Server.create("test", "server_type", "server_version")
             server.save()
 
