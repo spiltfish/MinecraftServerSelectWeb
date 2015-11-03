@@ -11,6 +11,11 @@ A web front-end utility for selecting which Minecraft server to run.
  
 ## Deploying the App
 
+#TODO
+
+
+# Manual steps
+
 ## How To Deploy a FTB Server Manually
 
 1. Download the server zip file from the FTB website. http://www.feed-the-beast.com/modpacks
