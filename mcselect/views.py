@@ -1,14 +1,13 @@
-from django.views.generic import TemplateView, CreateView, ListView
+from django.views.generic import CreateView, ListView
 
 from mcselect.forms import AddServerForm
 from mcselect.models import Server
 
 
-class ServerSelectView(ListView):
-    template_name = 'servers-select.html'
+class ServerListView(ListView):
     model = Server
 
 
-class AddServer(CreateView):
-    template_name = 'server-add.html'
+class AddServerCreateView(CreateView):
+    template_name = 'mcselect/server-create.html'
     form_class = AddServerForm

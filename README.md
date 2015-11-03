@@ -1,4 +1,4 @@
-# MinecraftServerSelectWeb
+# Minecraft Server Selector
 A web front-end utility for selecting which Minecraft server to run.
 
 # Getting Started
@@ -11,6 +11,7 @@ A web front-end utility for selecting which Minecraft server to run.
  
 ## Deploying the App
 
+    pip install -r requirements.txt
     ./run_server.py
 
 
@@ -33,6 +34,9 @@ A web front-end utility for selecting which Minecraft server to run.
 4. Create a Profile with your Mojang credentials
 5. Launch FTB
 
+## Upgrade the Server
+
+TODO
 
 ### Translation in Django
 

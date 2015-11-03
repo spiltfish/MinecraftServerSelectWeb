@@ -18,8 +18,8 @@ from django.contrib import admin
 from mcselect.views import *
 
 urlpatterns = [
-    url(r'^$', ServerSelectView.as_view(), name='servers-select'),
-    url(r'^servers/add/$', AddServer.as_view(), name='add-sever'),
+    url(r'^$', ServerListView.as_view(), name='servers-select'),
+    url(r'^servers/add/$', AddServerCreateView.as_view(), name='add-sever'),
     url(r'^admin/', include(admin.site.urls)),
 
 ]
