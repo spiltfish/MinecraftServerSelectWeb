@@ -32,3 +32,17 @@ A web front-end utility for selecting which Minecraft server to run.
 3. Edit modpacks, and add any extra mods (we use MagicalCrops)
 4. Create a Profile with your Mojang credentials
 5. Launch FTB
+
+
+### Translation
+
+https://docs.djangoproject.com/en/1.8/topics/i18n/translation/
+
+```python
+from django.utils.translation import ugettext as _
+from django.http import HttpResponse
+
+def my_view(request):
+    output = _("Welcome to my site.")
+    return HttpResponse(output)
+```
