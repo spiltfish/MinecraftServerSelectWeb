@@ -2,6 +2,15 @@
 A web front-end utility for selecting which Minecraft server to run.
 
 # Getting Started
+
+## Requirements
+ 1. Django
+ 2. Python 3.2.5
+ 3. Java
+ 4. ???
+ 
+## Deploying the App
+
 ## How To Deploy a FTB Server Manually
 
 1. Download the server zip file from the FTB website. http://www.feed-the-beast.com/modpacks
