@@ -16,6 +16,8 @@ import re
 
 import sys
 
+from django.http import UnreadablePostError
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
@@ -41,7 +43,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mcselect',
+    'davy',
+    'mcservers',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -54,12 +57,13 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'mcselect.urls'
+ROOT_URLCONF = 'davy.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'APP_DIRS': True,
+
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -67,15 +71,12 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-            'loaders': [
-                'django.template.loaders.filesystem.Loader',
-                'django.template.loaders.app_directories.Loader',
-            ]
+
         },
     },
 ]
 
-WSGI_APPLICATION = 'mcselect.wsgi.application'
+WSGI_APPLICATION = 'davy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -119,6 +120,15 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
+
+
+def skip_unreadable_post(record):
+    if record.exc_info:
+        exc_type, exc_value = record.exc_info[:2]
+        if isinstance(exc_value, UnreadablePostError):
+            return False
+    return True
+
 
 LOGGING = {
     'version': 1,
@@ -170,7 +180,7 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
-        'mcselect': {
+        'davy': {
             'handlers': ['console'],
             'level': 'DEBUG',
             'propagate': True,

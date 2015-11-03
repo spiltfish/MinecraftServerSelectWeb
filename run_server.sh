@@ -47,7 +47,7 @@ python manage.py collectstatic --noinput
 DJANGO_DEBUG_MODE=True
 #TODO: remove this set to true so production server can be configured
 if [ -z ${DJANGO_DEBUG_MODE} ]; then
-    su -m djuser -c "gunicorn mcselect.wsgi -w 4 -b 0.0.0.0:8001 --chdir=/code --enable-stdio-inheritance
+    su -m djuser -c "gunicorn davy.wsgi -w 4 -b 0.0.0.0:8001 --chdir=/code --enable-stdio-inheritance
     --error-logfile -"
 else
     python manage.py runserver 0.0.0.0:8000

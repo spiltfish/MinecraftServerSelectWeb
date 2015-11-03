@@ -4,8 +4,8 @@
 {% block content %}
     <div class="container">
         <h1>Minecraft Server List</h1>
-        {% for server in all_servers %}
-            <p>{{ server.server_name }} </p>
+        {% for server in object_list %}
+            <p>{{ server.name }} </p>
         {% endfor %}
     </div>
 {% endblock %}

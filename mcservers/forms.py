@@ -1,6 +1,6 @@
 from django.forms import ModelForm, Form
 from django.forms import CharField, FileField
-from mcselect.models import Server
+from .models import Server
 from django.utils.translation import ugettext as _
 
 

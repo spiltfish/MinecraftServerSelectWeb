@@ -1,6 +1,6 @@
 import subprocess
 
-from mcselect import constants
+from davy import constants
 
 
 def set_up_new_ftb_server(server_name, installer_zip_url):

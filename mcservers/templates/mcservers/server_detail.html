@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{%  block content %}
+    <div>
+    <H2>Server: {{ object.name }}</H2>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Is Deployed</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ object.name }}</td>
+                    <td>{{ object.is_deployed }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
