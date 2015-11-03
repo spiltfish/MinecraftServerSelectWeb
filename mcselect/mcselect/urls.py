@@ -19,6 +19,6 @@ from mcselect.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', ServerSelectView.as_view(), name='servers-select'),
-    url(r'^servers/', AddServer.as_view(), name='add-sever'),
+    url(r'^servers/$', ServerSelectView.as_view(), name='servers-select'),
+    url(r'^servers/add/$', AddServer.as_view(), name='add-sever'),
 ]

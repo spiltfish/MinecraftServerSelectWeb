@@ -1,19 +1,15 @@
 from django.db import models
 import uuid
+from django.utils.translation import ugettext as _
+
 
 class Server(models.Model):
-    server_name = models.CharField(max_length=128)
-    is_enabled = models.BooleanField()
-    server_type = models.CharField(max_length=128)
-    server_version = models.CharField(max_length=128)
+    name = models.CharField(_('Server Name'), max_length=128)
+    uuid = models.SlugField(_('Unique Identifier'), unique=True, default=uuid.uuid4, editable=False)
+    is_enabled = models.BooleanField(default=True)
+    type = models.CharField(max_length=128)
+    version = models.CharField(max_length=128)
     is_deployed = models.BooleanField(default=False)
-    slug = models.SlugField(unique=True, default=uuid.uuid1)
-
-    @classmethod
-    def create(cls, server_name, server_type, server_version):
-        server = cls(server_name=server_name, is_enabled=False, server_type=server_type, server_version=server_version,
-                     is_deployed=False)
-        return server
 
     def __unicode__(self):
         return '{}@{}'.format(self.sever_name, self.is_enabled)

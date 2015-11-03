@@ -1,6 +1,7 @@
 import subprocess
 from mcselect import constants
 
+
 def set_up_new_ftb_server(server_name, installer_zip_url):
     server_folder = constants.SERVER_DIRECTORY + server_name
     server_zip = server_folder + "server.zip"
@@ -11,6 +12,7 @@ def set_up_new_ftb_server(server_name, installer_zip_url):
     subprocess.call(['rm', server_folder + "eula.txt"])
     subprocess.call(['touch', server_folder + "eula.txt"])
     subprocess.call(['echo', 'eula=true', ">>", server_folder + "eula.txt"])
+
 
 def start_ftb_server(server_name):
     server_folder = constants.SERVER_DIRECTORY + server_name
