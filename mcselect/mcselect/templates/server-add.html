@@ -1,15 +1,12 @@
-<html>
+{% extends 'base.html' %}
+{% block title %}{{ block.super }} - Add Server{% endblock %}
+{% block content %}
     <div class="container">
         <h1>Add A Server</h1>
 
         <form action="" method="post" class="form-horizontal">
             {% csrf_token %}
-            <input type="text" name="name"/>
-            <input type="submit" value="Add" />
-
+            {{ form }}
         </form>
-
-
-
     </div>
-</html>
+{% endblock %}
