@@ -135,7 +135,7 @@ LOGGING = {
     'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
-            'format': '%(asctime)s %(module)s:%(lineno)-4d[%(levelname)-8s] %(message)s'
+            'format': "[%(asctime)s] [%(levelname)8s] --- %(message)s (%(filename)s:%(lineno)s)"
         },
         'simple': {
             'format': '%(levelname)s %(message)s'
@@ -168,16 +168,6 @@ LOGGING = {
         'django': {
             'handlers': ['console', 'mail_admins'],
             'level': 'INFO',
-            'propagate': True,
-        },
-        'ldap3': {
-            'handlers': ['console'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
-        'django-python3-ldap': {
-            'handlers': ['console', 'mail_admins'],
-            'level': 'ERROR',
             'propagate': True,
         },
         'davy': {
