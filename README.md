@@ -4,14 +4,14 @@ A web front-end utility for selecting which Minecraft server to run.
 # Getting Started
 
 ## Requirements
- 1. Django
+ 1. Django 1.8
  2. Python 3.2.5
  3. Java
  4. ???
  
 ## Deploying the App
 
-#TODO
+    ./run_server.py
 
 
 # Manual steps
@@ -34,7 +34,7 @@ A web front-end utility for selecting which Minecraft server to run.
 5. Launch FTB
 
 
-### Translation
+### Translation in Django
 
 https://docs.djangoproject.com/en/1.8/topics/i18n/translation/
 
