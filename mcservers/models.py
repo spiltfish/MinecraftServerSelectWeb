@@ -1,5 +1,7 @@
-from django.db import models
 import uuid
+
+from django.core.urlresolvers import reverse
+from django.db import models
 from django.utils.translation import ugettext as _
 
 
@@ -10,6 +12,9 @@ class Server(models.Model):
     type = models.CharField(max_length=128)
     version = models.CharField(max_length=128)
     is_deployed = models.BooleanField(default=False)
+
+    def get_absolute_url(self):
+        return reverse('mcservers:server-detail', args=(self.id,))
 
     def __unicode__(self):
         return '{}@{}'.format(self.sever_name, self.is_enabled)

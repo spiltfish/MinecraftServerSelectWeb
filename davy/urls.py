@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from mcselect.views import *
+
+from davy.views import IndexView
 
 urlpatterns = [
+    url(r'^$', IndexView.as_view(), name='index'),
+    url(r'^servers/', include('mcservers.urls', namespace='mcservers')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^servers/$', ServerSelectView.as_view(), name='servers-select'),
-    url(r'^servers/add/$', AddServer.as_view(), name='add-sever'),
+
 ]

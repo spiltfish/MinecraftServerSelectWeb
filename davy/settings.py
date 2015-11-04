@@ -12,9 +12,13 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import re
+
+import sys
+
+from django.http import UnreadablePostError
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -26,8 +30,10 @@ SECRET_KEY = ')mh#b3#mg7x*gd7=##4o%srl(*k+-dn&$7(-=_qj=io0*66pok'
 DEBUG = os.environ.get('DJANGO_DEBUG', True)
 
 ALLOWED_HOSTS = []
-
-
+IGNORABLE_404_URLS = (
+    re.compile(r'^/favicon\.ico$'),
+    re.compile(r'^/apple-touch-icon.*\.png$'),
+)
 # Application definition
 
 INSTALLED_APPS = (
@@ -37,7 +43,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mcselect',
+    'davy',
+    'mcservers',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,16 +55,15 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.security.SecurityMiddleware',
 )
 
-ROOT_URLCONF = 'mcselect.urls'
+ROOT_URLCONF = 'davy.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["/root/git/MinecraftServerSelectWeb/MinecraftServerSelectWeb/mcselect/mcselect/templates"],
         'APP_DIRS': True,
+
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -65,12 +71,12 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+
         },
     },
 ]
 
-WSGI_APPLICATION = 'mcselect.wsgi.application'
-
+WSGI_APPLICATION = 'davy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
@@ -81,8 +87,12 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
-
+if 'test' in sys.argv:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:', }
+    }
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -96,8 +106,79 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'cstatic')
 STATIC_URL = '/static/'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # 'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+
+def skip_unreadable_post(record):
+    if record.exc_info:
+        exc_type, exc_value = record.exc_info[:2]
+        if isinstance(exc_value, UnreadablePostError):
+            return False
+    return True
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': "[%(asctime)s] [%(levelname)8s] --- %(message)s (%(filename)s:%(lineno)s)"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'filters': {
+        'skip_unreadable_posts': {
+            '()': 'django.utils.log.CallbackFilter',
+            'callback': skip_unreadable_post,
+        },
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'formatter': 'verbose',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['skip_unreadable_posts'],
+            'class': 'django.utils.log.AdminEmailHandler',
+            'include_html': True,
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'davy': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+try:
+    from .local_settings import *
+except ImportError as e:
+    pass

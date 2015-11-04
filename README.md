@@ -1,17 +1,18 @@
-# MinecraftServerSelectWeb
+# Minecraft Server Selector
 A web front-end utility for selecting which Minecraft server to run.
 
 # Getting Started
 
 ## Requirements
- 1. Django
+ 1. Django 1.8
  2. Python 3.2.5
  3. Java
  4. ???
  
 ## Deploying the App
 
-#TODO
+    pip install -r requirements.txt
+    ./run_server.py
 
 
 # Manual steps
@@ -33,8 +34,11 @@ A web front-end utility for selecting which Minecraft server to run.
 4. Create a Profile with your Mojang credentials
 5. Launch FTB
 
+## Upgrade the Server
 
-### Translation
+TODO
+
+### Translation in Django
 
 https://docs.djangoproject.com/en/1.8/topics/i18n/translation/
 
