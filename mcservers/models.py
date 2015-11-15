@@ -21,3 +21,17 @@ class Server(models.Model):
 
     def __str__(self):
         return '{}@{}'.format(self.sever_name, self.is_enabled)
+
+
+class Modpack(models.Model):
+    name = models.CharField(_('Modpack Name'), max_length=128)
+    uuid = models.SlugField(_('Unique Identifier'), unique=True, default=uuid.uuid4, editable=False)
+    version = models.CharField(max_length=128)
+    file = models.FileField(name=name)
+
+
+class Mod(models.Model):
+    name = models.CharField(_('Mod Name'), max_length=128)
+    uuid = models.SlugField(_('Unique Identifier'), unique=True, default=uuid.uuid4, editable=False)
+    version = models.CharField(max_length=128)
+    file = models.FileField(name=name)
