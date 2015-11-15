@@ -35,3 +35,10 @@ class Mod(models.Model):
     uuid = models.SlugField(_('Unique Identifier'), unique=True, default=uuid.uuid4, editable=False)
     version = models.CharField(max_length=128)
     file = models.FileField(name=name)
+
+class SeverInstallationProcedure(models.Model):
+    pass
+
+class ProcedureStep(models.Model):
+    name = models.CharField(_('Step Name'), max_length=128)
+    description = models.CharField(_('Step Description'), max_length=128)
